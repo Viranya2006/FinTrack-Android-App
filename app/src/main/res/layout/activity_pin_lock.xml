@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#112117"
+    tools:context=".PinLockActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:titleTextColor="@color/white"
+        app:navigationIconTint="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:text="Enter your PIN" />
+
+    <LinearLayout
+        android:id="@+id/dots_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_prompt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <ImageView style="@style/PinDot" />
+        <ImageView style="@style/PinDot" />
+        <ImageView style="@style/PinDot" />
+        <ImageView style="@style/PinDot" />
+        <ImageView style="@style/PinDot" />
+        <ImageView style="@style/PinDot" />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/pin_pad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/dots_layout"
+        android:layout_marginTop="40dp"
+        android:columnCount="3"
+        android:useDefaultMargins="true">
+
+        <TextView style="@style/PinButton" android:id="@+id/btn_1" android:text="1" android:textColor="#33B984" />
+        <TextView style="@style/PinButton" android:id="@+id/btn_2" android:text="2" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_3" android:text="3" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_4" android:text="4" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_5" android:text="5" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_6" android:text="6" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_7" android:text="7" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_8" android:text="8" android:textColor="#33B984"/>
+        <TextView style="@style/PinButton" android:id="@+id/btn_9" android:text="9" android:textColor="#33B984"/>
+
+        <ImageView style="@style/PinButton.Icon" android:id="@+id/btn_fingerprint" android:src="@drawable/ic_fingerprint" />
+        <TextView style="@style/PinButton" android:id="@+id/btn_0" android:text="0" />
+        <ImageView style="@style/PinButton.Icon" android:id="@+id/btn_backspace" android:src="@drawable/ic_backspace" app:tint="@color/white"/>
+    </GridLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="Confirm"
+        android:backgroundTint="#00A86B"
+        app:cornerRadius="30dp" />
+
+</RelativeLayout>
