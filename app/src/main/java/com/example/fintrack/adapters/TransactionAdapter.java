@@ -13,18 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fintrack.R;
 import com.example.fintrack.models.Transaction;
+import com.example.fintrack.utils.CategoryIconUtil;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
     private final Context context;
-    private final List<Transaction> transactionList; // This is the list that gets displayed (and filtered)
-    private final List<Transaction> transactionListFull; // This holds the original, complete list of transactions
+    private final List<Transaction> transactionList; // This is the list the adapter will display
     private final OnTransactionClickListener listener;
 
     /**
@@ -37,14 +36,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     /**
      * Constructor for the adapter.
      * @param context The context from which the adapter is called.
-     * @param transactionList The initial list of transactions to display.
+     * @param transactionList The list of transactions to display.
      * @param listener The listener that will handle item clicks.
      */
     public TransactionAdapter(Context context, List<Transaction> transactionList, OnTransactionClickListener listener) {
         this.context = context;
         this.transactionList = transactionList;
         this.listener = listener;
-        this.transactionListFull = new ArrayList<>(transactionList);
     }
 
     @NonNull
@@ -58,6 +56,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
         Transaction transaction = transactionList.get(position);
 
+        // Bind data to the views in the ViewHolder
         holder.tvCategory.setText(transaction.getCategory());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -76,6 +75,21 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.tvAmount.setTextColor(ContextCompat.getColor(context, R.color.red_expense));
         }
 
+        int iconResId = CategoryIconUtil.getIconResourceId(transaction.getCategory());
+        holder.ivCategoryIcon.setImageResource(iconResId);
+        if ("Income".equals(transaction.getType())) {
+            holder.tvAmount.setText("+" + formattedAmount);
+            holder.tvAmount.setTextColor(ContextCompat.getColor(context, R.color.green_income));
+            holder.ivCategoryIcon.setBackgroundResource(R.drawable.circular_background_green);
+            holder.ivCategoryIcon.setColorFilter(ContextCompat.getColor(context, R.color.green_income));
+        } else {
+            holder.tvAmount.setText("-" + formattedAmount);
+            holder.tvAmount.setTextColor(ContextCompat.getColor(context, R.color.red_expense));
+            holder.ivCategoryIcon.setBackgroundResource(R.drawable.circular_background_red);
+            holder.ivCategoryIcon.setColorFilter(ContextCompat.getColor(context, R.color.red_expense));
+        }
+
+        // Set the click listener on the entire item view
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onTransactionClick(transaction);
@@ -89,37 +103,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     /**
-     * Filters the transaction list based on a search query.
-     * @param text The search query entered by the user.
+     * ViewHolder class for the transaction item layout.
      */
-    public void filter(String text) {
-        transactionList.clear();
-        if (text.isEmpty()) {
-            transactionList.addAll(transactionListFull);
-        } else {
-            text = text.toLowerCase().trim();
-            for (Transaction item : transactionListFull) {
-                // Check if the search text is in the category, description, or amount
-                if (item.getCategory().toLowerCase().contains(text) ||
-                        (item.getDescription() != null && item.getDescription().toLowerCase().contains(text)) ||
-                        String.valueOf(item.getAmount()).contains(text)) {
-                    transactionList.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
-
-    /**
-     * Updates the master list of transactions. This should be called whenever new data
-     * is fetched from Firestore.
-     * @param newTransactions The complete, new list of transactions.
-     */
-    public void updateFullList(List<Transaction> newTransactions) {
-        transactionListFull.clear();
-        transactionListFull.addAll(newTransactions);
-    }
-
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCategoryIcon;
         TextView tvCategory, tvDate, tvAmount;

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/white"
     tools:context=".fragments.ProfileFragment">
 
     <LinearLayout
@@ -71,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/light_green_bg"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp">
 

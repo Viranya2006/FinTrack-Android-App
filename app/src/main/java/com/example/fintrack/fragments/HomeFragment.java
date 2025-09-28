@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
-    private TextView tvWelcomeMessage, tvTotalBalance, tvMonthlyIncome, tvMonthlyExpense;
+    private TextView tvWelcomeMessage, tvUserNameHeader, tvTotalBalance, tvMonthlyIncome, tvMonthlyExpense;
     private PieChart pieChart;
     private BarChart barChart;
     private RecyclerView rvRecentTransactions;
@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment {
 
     private void initViews(View view) {
         tvWelcomeMessage = view.findViewById(R.id.tv_welcome_message);
+        tvUserNameHeader = view.findViewById(R.id.tv_user_name_header);
         tvTotalBalance = view.findViewById(R.id.tv_total_balance);
         tvMonthlyIncome = view.findViewById(R.id.tv_monthly_income);
         tvMonthlyExpense = view.findViewById(R.id.tv_monthly_expense);
@@ -83,7 +84,7 @@ public class HomeFragment extends Fragment {
         rvRecentTransactions = view.findViewById(R.id.rv_recent_transactions);
 
         recentTransactionList = new ArrayList<>();
-        transactionAdapter = new TransactionAdapter(getContext(), recentTransactionList, null); // Pass null as we don't need clicks here
+        transactionAdapter = new TransactionAdapter(getContext(), recentTransactionList, null);
         rvRecentTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
         rvRecentTransactions.setAdapter(transactionAdapter);
     }
@@ -95,20 +96,28 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadUserProfile() {
+        if (currentUser == null || !isAdded()) return;
         db.collection("users").document(currentUser.getUid()).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (isAdded() && documentSnapshot.exists()) {
                         String name = documentSnapshot.getString("name");
-                        tvWelcomeMessage.setText("Welcome back, " + name);
+                        if (name != null && !name.isEmpty()) {
+                            String firstName = name;
+                            if (name.contains(" ")) {
+                                firstName = name.substring(0, name.indexOf(" "));
+                            }
+                            tvUserNameHeader.setText(firstName);
+                        }
                     }
                 });
     }
 
     private void fetchDashboardData() {
+        if (currentUser == null || !isAdded()) return;
         String userId = currentUser.getUid();
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("en", "LK"));
 
-        // 1. Fetch Total Balance from all accounts
+        // 1. Fetch Total Balance
         db.collection("users").document(userId).collection("accounts").addSnapshotListener((value, error) -> {
             if (isAdded() && value != null) {
                 double totalBalance = 0.0;
@@ -147,28 +156,23 @@ public class HomeFragment extends Fragment {
                                 expenseByCategory.put(category, expenseByCategory.getOrDefault(category, 0f) + (float) transaction.getAmount());
                             }
                         }
-
                         tvMonthlyIncome.setText(currencyFormat.format(monthlyIncome));
                         tvMonthlyExpense.setText(currencyFormat.format(monthlyExpense));
-
                         setupPieChart(expenseByCategory);
                         setupBarChart((float) monthlyIncome, (float) monthlyExpense);
                     }
                 });
 
-        // 3. Fetch Recent Transactions (last 5)
+        // 3. Fetch Recent Transactions
         db.collection("users").document(userId).collection("transactions")
                 .orderBy("date", Query.Direction.DESCENDING)
                 .limit(5)
                 .addSnapshotListener((value, error) -> {
                     if (isAdded() && value != null) {
                         recentTransactionList.clear();
-                        List<Transaction> allTransactions = new ArrayList<>();
                         for (QueryDocumentSnapshot doc : value) {
-                            allTransactions.add(doc.toObject(Transaction.class));
+                            recentTransactionList.add(doc.toObject(Transaction.class));
                         }
-                        transactionAdapter.updateFullList(allTransactions); // Important for adapters with filtering
-                        recentTransactionList.addAll(allTransactions);
                         transactionAdapter.notifyDataSetChanged();
                     }
                 });
