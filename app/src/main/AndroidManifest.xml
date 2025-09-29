@@ -19,13 +19,16 @@
         android:theme="@style/Theme.FinTrack"
         tools:targetApi="31">
         <activity
-            android:name=".EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ManageCategoriesActivity"
             android:exported="false"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.FinTrack" />
+        <activity
+            android:name=".activity_manage_categories_simple"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".EditAccountActivity"
             android:exported="false" />

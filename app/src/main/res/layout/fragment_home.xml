@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_green_bg"
+    android:background="@color/bglight_green"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -126,21 +126,23 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTintMode="screen"
             android:layout_marginTop="16dp"
+            app:strokeColor="@color/light_green"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/light_green_bg"
+                android:background="@color/bglight_green"
                 android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Expenses by Category (This Month)"
-                    android:textColor="@color/text_primary1"
+                    android:textColor="@color/primary_green"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -156,20 +158,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:strokeColor="@color/light_green"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/light_green_bg"
+                android:background="@color/bglight_green"
                 android:padding="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Income vs. Expense (This Month)"
-                    android:textColor="@color/text_primary1"
+                    android:textColor="@color/primary_green"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

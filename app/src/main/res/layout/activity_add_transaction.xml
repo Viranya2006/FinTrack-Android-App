@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".AddTransactionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,8 +15,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Add Transaction"
-            app:titleTextColor="@color/white" />
+            android:gravity="center"
+            android:background="@color/white"
+            app:titleTextColor="@color/primary_green">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Transaction"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView

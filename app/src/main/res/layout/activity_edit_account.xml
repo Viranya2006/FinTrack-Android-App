@@ -4,18 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bglight_green"
     android:orientation="vertical"
     tools:context=".EditAccountActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Edit Account"
-            app:titleTextColor="@color/white" />
+            android:gravity="center"
+            android:background="@color/bglight_green"
+            app:titleTextColor="@color/primary_green">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Account"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />    <!-- Centers TextView inside Toolbar -->
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -32,7 +46,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_account_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -40,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@color/white"
             android:hint="Account Type">
             <AutoCompleteTextView
                 android:id="@+id/actv_account_type"

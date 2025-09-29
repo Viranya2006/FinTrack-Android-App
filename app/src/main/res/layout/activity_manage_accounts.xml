@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bglight_green"
     tools:context=".ManageAccountsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,9 +15,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="Manage Accounts"
-            app:titleTextColor="@color/white" />
+            android:background="@color/bglight_green"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manage Accounts"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />      <!-- Centers the TextView -->
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@color/white"
             android:padding="16dp">
             <TextView
                 android:layout_width="wrap_content"

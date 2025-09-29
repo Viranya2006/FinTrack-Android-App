@@ -5,6 +5,8 @@
 
     <!-- FinTrack App Colors -->
     <color name="primary_green">#1ABC9C</color>
+    <color name="light_green">#E8F8F5</color>
+    <color name="bglight_green">#F0F4F3</color>
     <color name="dark_green">#16A085</color>
     <color name="light_green_bg">#F3FBF8</color>
     <color name="text_primary">#2C3E50</color>
@@ -13,5 +15,5 @@
     <color name="red_expense">#E74C3C</color>
     <color name="green_income">#2ECC71</color>
     <color name="light_gray">#ECF0F1</color>
-    <color name="yellow_accent">#F1C40F</color>
+    <color name="yellow_accent">#f9b006</color>
 </resources>

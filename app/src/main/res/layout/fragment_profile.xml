@@ -20,8 +20,8 @@
             android:gravity="center"
             android:padding="16dp"
             android:text="Profile"
-            android:textColor="@color/text_primary"
-            android:textSize="20sp"
+            android:textColor="@color/primary_green"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView

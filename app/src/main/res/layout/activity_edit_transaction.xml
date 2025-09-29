@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bglight_green"
     tools:context=".EditTransactionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,9 +15,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Edit Transaction"
-            app:titleTextColor="@color/white"
-            android:background="?attr/colorPrimary"/>
+            android:background="@color/bglight_green"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Transaction"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />      <!-- Centers TextView inside Toolbar -->
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView

@@ -4,20 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_green_bg"
+    android:background="@color/bglight_green"
     tools:context=".fragments.BudgetsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Monthly Budgets"
-            app:titleTextColor="@color/white"
-            android:background="?attr/colorPrimary"/>
+            android:background="@color/bglight_green"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Budgets"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />    <!-- Centers TextView inside Toolbar -->
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -43,5 +54,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add"
-        app:tint="@android:color/white" />
+        app:backgroundTint="#E8F8F5"
+        app:tint="@color/primary_green"  />
 </RelativeLayout>

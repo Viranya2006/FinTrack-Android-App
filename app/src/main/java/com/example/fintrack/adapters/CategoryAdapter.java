@@ -44,6 +44,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categoryList.size();
     }
 
+    // THIS IS THE NEW, IMPORTANT METHOD
+    public void setCategories(List<Category> newCategories) {
+        this.categoryList.clear();
+        this.categoryList.addAll(newCategories);
+        notifyDataSetChanged(); // This tells the RecyclerView to redraw itself
+    }
+
     static class CategoryViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCategoryIcon, ivEdit;
         TextView tvCategoryName, tvCategoryType;

@@ -41,5 +41,13 @@
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:src">@drawable/dot_empty</item>
     </style>
+    <style name="CustomBottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemTextColor">@color/bottom_nav_icon_color_selector</item>
+        <item name="itemActiveIndicatorStyle">@style/CustomBottomNavIndicator</item>
+    </style>
+
+    <style name="CustomBottomNavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_green</item>
+    </style>
 
 </resources>

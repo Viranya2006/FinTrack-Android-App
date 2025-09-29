@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F7F9F9"
+    android:background="@color/light_green_bg"
     tools:context=".ManageCategoriesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,10 +35,9 @@
         android:textColor="@color/text_primary"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:visibility="gone"
         tools:visibility="visible" />
 
-    <!-- This is the crucial part -->
+    <!-- RecyclerView with added tools attributes for preview -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_categories"
         android:layout_width="match_parent"
@@ -47,7 +46,9 @@
         android:clipToPadding="false"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        tools:listitem="@layout/category_item_layout" />
+        tools:itemCount="5"
+        tools:listitem="@layout/category_item_layout"
+        tools:theme="@style/Theme.FinTrack" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_add_category"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_green_bg"
+    android:background="@color/bglight_green"
     tools:context=".fragments.GoalsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,15 +16,26 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="@string/title_my_savings_goals"
-            app:titleTextColor="@color/white" />
+            android:background="@color/bglight_green"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_my_savings_goals"
+                android:textColor="@color/primary_green"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:layout_gravity="center" />    <!-- Centers TextView inside Toolbar -->
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_goals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bglight_green"
         android:layout_below="@id/app_bar_layout"
         android:padding="8dp" />
 
@@ -49,6 +60,7 @@
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/add_new_goal"
         android:src="@android:drawable/ic_input_add"
-        app:tint="@android:color/white" />
+        app:backgroundTint="#E8F8F5"
+        app:tint="@color/primary_green" />
 
 </RelativeLayout>
